@@ -5,8 +5,8 @@
 class Game  {
     constructor() {
         this.missed = 0;
-        this.phrases = this.createPhrases(); 
         this.activePhrase = null;
+        this.phrases = this.createPhrases(); 
 };   
 
 /**
@@ -23,4 +23,15 @@ createPhrases() {
         new Phrase ('Redbull gives you wings')
     ];
     return phraseObjects;
+};
+
+/**
+* Selects random phrase from phrases property
+* @return {Object} Phrase object chosen to be used
+*/
+getRandomPhrase() {
+    const randomPhrase = Math.floor(Math.random() * this.phrases.length);
+    const 
+    return randomPhrase;
+
 }};

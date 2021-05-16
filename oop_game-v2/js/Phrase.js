@@ -13,10 +13,14 @@ class Phrase {
         this.phrase.split('').forEach(word => {
             let li = document.createElement('li');
             hiddenPhrase.appendChild(li);
-            if (word === ''){
-            li.classList.add('space');
+
+            if (word === " "){
+                li.classList.add("space");
+
             } else {
-            li.classList.add('letter'); 
+            li.classList.add("hide");
+            li.classList.add("letter");
+            li.innerHTML = `${word}`;
             }
         });
     }

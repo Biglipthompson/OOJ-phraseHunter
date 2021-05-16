@@ -31,7 +31,7 @@ createPhrases() {
 */
 getRandomPhrase() {
     const randomPhrase = Math.floor(Math.random() * this.phrases.length);
-    const 
-    return randomPhrase;
+    const phraseObject = this.phrases[randomPhrase];
+    return phraseObject;
 
 }};

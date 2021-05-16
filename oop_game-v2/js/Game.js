@@ -16,7 +16,7 @@ class Game  {
 
 createPhrases() {
     const phraseObjects = [
-        new Phrase ('Life is like a box of chocolates'),
+        new Phrase ('Apple Is the goat'),
         new Phrase ('Javascript is Amazing'),
         new Phrase ('I love investing'),
         new Phrase ('I will become a FullStack Developer'),
@@ -33,5 +33,13 @@ getRandomPhrase() {
     const randomPhrase = Math.floor(Math.random() * this.phrases.length);
     const phraseObject = this.phrases[randomPhrase];
     return phraseObject;
+    };
 
-}};
+startGame(){
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none'; 
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
+
+    }
+};

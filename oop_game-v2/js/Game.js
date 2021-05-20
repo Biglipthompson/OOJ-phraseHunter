@@ -40,6 +40,17 @@ startGame(){
     overlay.style.display = 'none'; 
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    }
 
+    checkForWin() {
+
+    }
+    
+    removeLife() {
+
+    }
+
+    gameOver() {
+        
     }
 };

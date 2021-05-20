@@ -24,4 +24,9 @@ class Phrase {
             }
         });
     }
+    checkLetter(){
+        if (e.target == `${word}`) {
+
+        }
+    }
 }

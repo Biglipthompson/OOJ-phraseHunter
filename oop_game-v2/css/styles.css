@@ -28,6 +28,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: skyblue;
+
 }
 
 li, ol, ul {

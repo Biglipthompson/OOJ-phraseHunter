@@ -42,8 +42,23 @@ startGame(){
     this.activePhrase.addPhraseToDisplay();
     }
 
+    handleinteraction() {
+        button.disabled = true;
+
+        if (!game.activePhrase.checkLetter(button.textContent)) {
+            button.className = 'wrong'; 
+            game.removeLife();
+        } else {
+            button.className = 'chosen';
+            game.activePhrase.showMatchedLetter(button.textContent);
+        };
+
+        game.resetGame(button)
+    }
+
+//This checks for the winning move true if the game was won and false if not
     checkForWin() {
-        
+
     }
     
     removeLife() {

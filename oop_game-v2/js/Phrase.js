@@ -11,7 +11,7 @@ class Phrase {
 
     const hiddenPhrase = document.querySelector('#phrase ul');
         this.phrase.split('').forEach(word => {
-            let li = document.createElement('li');
+            const li = document.createElement('li');
             hiddenPhrase.appendChild(li);
 
             if (word === " "){
@@ -25,7 +25,11 @@ class Phrase {
         });
     }
     checkLetter(){
-        if (e.target == `${word}`) {
+        return game.activePhrase.phrase.includes(letter);
+    }
+
+    showMatchedLetter() {
+        if (e.target === `${word}`) {
 
         }
     }

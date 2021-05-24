@@ -43,7 +43,7 @@ startGame(){
     }
 
     checkForWin() {
-
+        
     }
     
     removeLife() {
@@ -51,6 +51,6 @@ startGame(){
     }
 
     gameOver() {
-        
+
     }
 };

@@ -58,7 +58,9 @@ startGame(){
 
 //This checks for the winning move true if the game was won and false if not
     checkForWin() {
-
+        const showLetters = document.querySelectorSelectorAll('.show').length;
+        const chosenLetters = document.querySelectorAll('.letter').length;
+        return showLetters === chosenLetters;
     }
     
     removeLife() {

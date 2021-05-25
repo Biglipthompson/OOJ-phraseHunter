@@ -25,10 +25,9 @@ class Phrase {
     }
 
 
-// @param (string) letter - Letter to check
 //This checks to see if the letter picked is part of the random phrase
   checkLetter(letter){
-return game.activePhrase.phrase.includes(letter);
+    return game.activePhrase.phrase.includes(letter);
     };
 
 

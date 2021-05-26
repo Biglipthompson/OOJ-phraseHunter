@@ -52,7 +52,6 @@ startGame(){
             button.className = 'chosen';
             game.activePhrase.showMatchedLetter(button.textContent);
         };
-
         game.resetGame(button)
     }
 
@@ -63,11 +62,23 @@ startGame(){
         return showLetters === chosenLetters;
     }
     
-    removeLife() {
-
+    removeLife() { 
+            const tries = document.querySelectorAll('.tries');
+            this.missed += 1;
+        if (this.missed < 5 ) {
+            tries[this.missed - 1].firstElementChild.src='images/lostHeart.png';
+        } else if (this.missed >= 5) {
+            let message = 'You lose, try again';
+            let className = 'lose';  
+            gameOver(message, className)
+        }
     }
 
     gameOver() {
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'block';
+        
+
 
     }
 };

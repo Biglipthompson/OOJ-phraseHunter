@@ -76,9 +76,10 @@ startGame(){
 
     gameOver() {
         const overlay = document.getElementById('overlay');
+        const h1Message = document.getElementById('game-over-message');
         overlay.style.display = 'block';
-        
-
-
+        h1Message.className = `${className}`;
+        h1Message.textContent = `${message}`;
+    
     }
 };

@@ -42,18 +42,30 @@ startGame(){
     this.activePhrase.addPhraseToDisplay();
     }
 
-    handleinteraction() {
-        button.disabled = true;
+    handleinteraction(e) {
 
-        if (!game.activePhrase.checkLetter(button.textContent)) {
-            button.className = 'wrong'; 
-            game.removeLife();
-        } else {
-            button.className = 'chosen';
-            game.activePhrase.showMatchedLetter(button.textContent);
-        };
-        game.resetGame(button)
+        e.disabled = true;
+
+        const letter = e.textContent;
+
+        if (this.activePhrase.checkLetter(letter)) {
+            e.className = 'chosen key'; 
+
+            this.activePhrase.showMatchedLetter(letter);
+        if(this.checkForWin()){
+
+            let message = "Correct Phrase!";
+
+            let className = "win"; 
+
+            this.gameOver(message, className);
+        }
     }
+    else if (!this.activePhrase.checkLetter(letter)){
+        e.className = "wrong key";
+        this.removeLife();
+    }
+}
 
 //This checks for the winning move true if the game was won and false if not
     checkForWin() {
@@ -70,15 +82,18 @@ startGame(){
         } else if (this.missed >= 5) {
             let message = 'You lose, try again';
             let className = 'lose';  
-            gameOver(message, className)
+            this.gameOver(message, className)
         }
     }
 
-    gameOver() {
+    gameOver(message, className) {
         const overlay = document.getElementById('overlay');
-        const h1Message = document.getElementById('game-over-message');
         overlay.style.display = 'block';
+
+        const h1Message = document.getElementById('game-over-message');
+
         h1Message.className = `${className}`;
+
         h1Message.textContent = `${message}`;
     
     }

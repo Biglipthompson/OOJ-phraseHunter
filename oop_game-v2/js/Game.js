@@ -1,6 +1,7 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Game.js */
+const buttonReset = document.querySelector('#btn__reset');
 
 class Game  {
     constructor() {
@@ -13,7 +14,6 @@ class Game  {
 * Creates phrases for use in game
 * @return {array} An array of phrases that could be used in the game
 */
-
 createPhrases() {
     const phraseObjects = [
         new Phrase ('Apple Is the goat'),
@@ -40,24 +40,17 @@ startGame(){
     overlay.style.display = 'none'; 
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    }
+}
 
-    handleinteraction(e) {
-
+    handleInteraction(e) {
         e.disabled = true;
-
         const letter = e.textContent;
-
         if (this.activePhrase.checkLetter(letter)) {
             e.className = 'chosen key'; 
-
             this.activePhrase.showMatchedLetter(letter);
-        if(this.checkForWin()){
-
+        if (this.checkForWin()){
             let message = "Correct Phrase!";
-
             let className = "win"; 
-
             this.gameOver(message, className);
         }
     }
@@ -68,33 +61,57 @@ startGame(){
 }
 
 //This checks for the winning move true if the game was won and false if not
-    checkForWin() {
-        const showLetters = document.querySelectorSelectorAll('.show').length;
-        const chosenLetters = document.querySelectorAll('.letter').length;
-        return showLetters === chosenLetters;
+/**
+* Checks for winning move
+* @return {boolean} True if game has been won, false if game wasn't
+won
+*/
+    checkForWin(gameWon) {
+        let chosenLetters = document.querySelectorAll('.letter');
+        let showLetters = document.querySelectorAll('.show');
+        if (showLetters.length === chosenLetters.length) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+/**
+* Increases the value of the missed property
+* Removes a life from the scoreboard
+* Checks if player has remaining lives and ends game if player is out
+*/
     removeLife() { 
-            const tries = document.querySelectorAll('.tries');
+            const tries = document.querySelector("img[src='images/liveHeart.png']");
+            tries.setAttribute("src", "images/lostHeart.png");
             this.missed += 1;
-        if (this.missed < 5 ) {
-            tries[this.missed - 1].firstElementChild.src='images/lostHeart.png';
-        } else if (this.missed >= 5) {
-            let message = 'You lose, try again';
-            let className = 'lose';  
-            this.gameOver(message, className)
+        if (this.missed === 5 ) {
+            this.gameOver();
+        }
+    }
+/**
+* Displays game over message
+* @param {boolean} gameWon - Whether or not the user won the game
+*/
+    gameOver(gameWon) {
+        const overlay = document.getElementById('overlay');
+        const h1Message = document.getElementById('game-over-message');
+        overlay.style.display = 'block';
+
+        if (gameWon) {
+            h1Message.textContent = 'You Won!';
+            overlay.className = 'win';
+            buttonReset.textContent = 'PLay again?';
+            this.resetGame();
+        } else {
+            h1Message.textContent = 'You lose';
+            overlay.className = 'lose';
+            buttonReset.textContent = 'Play agin?';
+            this.resetGame();
         }
     }
 
-    gameOver(message, className) {
-        const overlay = document.getElementById('overlay');
-        overlay.style.display = 'block';
+resetGame() {
 
-        const h1Message = document.getElementById('game-over-message');
 
-        h1Message.className = `${className}`;
-
-        h1Message.textContent = `${message}`;
-    
     }
 };

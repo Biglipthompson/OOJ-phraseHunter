@@ -26,6 +26,10 @@ class Phrase {
 
 
 //This checks to see if the letter picked is part of the random phrase
+/**
+* Checks if passed letter is in phrase
+* @param (string) letter - Letter to check
+*/
   checkLetter(letter){
     return game.activePhrase.phrase.includes(letter);
     };
@@ -37,7 +41,6 @@ class Phrase {
 */
     showMatchedLetter(letter) {
         const hiddenLetter = document.querySelectorAll('#phrase ul li');
-
         game.activePhrase.phrase.split('').forEach((word, index) => {
             if (game.activePhrase.checkLetter(letter) && hiddenLetter[index].textContent === letter) {
                 hiddenLetter[index].className = 'show';

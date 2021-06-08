@@ -42,39 +42,20 @@ startGame(){
     this.activePhrase.addPhraseToDisplay();
 }
 
-    handleInteraction(e) {
-        e.disabled = true;
-        const letter = e.textContent;
-        if (this.activePhrase.checkLetter(letter)) {
-            e.className = 'chosen key'; 
-            this.activePhrase.showMatchedLetter(letter);
-        if (this.checkForWin()){
-            let message = "Correct Phrase!";
-            let className = "win"; 
-            this.gameOver(message, className);
-        }
-    }
-    else if (!this.activePhrase.checkLetter(letter)){
-        e.className = "wrong key";
-        this.removeLife();
-    }
-}
-
 //This checks for the winning move true if the game was won and false if not
 /**
 * Checks for winning move
 * @return {boolean} True if game has been won, false if game wasn't
 won
 */
-    checkForWin(gameWon) {
-        let chosenLetters = document.querySelectorAll('.letter');
-        let showLetters = document.querySelectorAll('.show');
-        if (showLetters.length === chosenLetters.length) {
+checkForWin() {
+    let hiddenLetters = document.getElementsByClassName("hide");
+    if(hiddenLetters.length === 0) {
             return true;
-        } else {
-            return false;
-        }
+    } else {
+           return false;
     }
+};
 /**
 * Increases the value of the missed property
 * Removes a life from the scoreboard
@@ -100,15 +81,33 @@ won
         if (gameWon) {
             h1Message.textContent = 'You Won!';
             overlay.className = 'win';
-            buttonReset.textContent = 'PLay again?';
-            this.resetGame();
+            buttonReset.textContent = 'Play again?';
+            // this.resetGame();
         } else {
             h1Message.textContent = 'You lose';
             overlay.className = 'lose';
-            buttonReset.textContent = 'Play agin?';
-            this.resetGame();
+            buttonReset.textContent = 'Play again?';
+            // this.resetGame();
         }
     }
+
+handleInteraction(e) {
+    e.disabled = true;
+    const letter = e.textContent;
+    if (this.activePhrase.checkLetter(letter)) {
+        e.className = 'chosen key'; 
+        this.activePhrase.showMatchedLetter(letter);
+    if (this.checkForWin()){
+        let message = "Correct Phrase!";
+        let className = "win"; 
+        this.gameOver(message, className);
+    }
+}
+    else if (!this.activePhrase.checkLetter(letter)){
+        e.className = "wrong key";
+        this.removeLife();
+    }
+}
 
 resetGame() {
 

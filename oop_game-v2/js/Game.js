@@ -101,7 +101,7 @@ handleInteraction(e) {
         let message = "Correct Phrase!";
         let className = "win"; 
         this.gameOver(message, className);
-    }
+        }
 }
     else if (!this.activePhrase.checkLetter(letter)){
         e.className = "wrong key";

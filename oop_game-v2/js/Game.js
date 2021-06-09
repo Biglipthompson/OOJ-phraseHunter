@@ -82,34 +82,48 @@ checkForWin() {
             h1Message.textContent = 'You Won!';
             overlay.className = 'win';
             buttonReset.textContent = 'Play again?';
-            // this.resetGame();
+            this.resetGame();
         } else {
             h1Message.textContent = 'You lose';
             overlay.className = 'lose';
             buttonReset.textContent = 'Play again?';
-            // this.resetGame();
+            this.resetGame();
         }
     }
 
 handleInteraction(e) {
+//Disable the key button
     e.disabled = true;
-    const letter = e.textContent;
-    if (this.activePhrase.checkLetter(letter)) {
+//This is the letter picked in the phrase
+    const key = e.textContent;
+
+    if (this.activePhrase.checkLetter(key)) {
+
         e.className = 'chosen key'; 
-        this.activePhrase.showMatchedLetter(letter);
+
+        this.activePhrase.showMatchedLetter(key);
+
     if (this.checkForWin()){
-        let message = "Correct Phrase!";
-        let className = "win"; 
-        this.gameOver(message, className);
+
+        this.gameOver(true);
         }
 }
-    else if (!this.activePhrase.checkLetter(letter)){
-        e.className = "wrong key";
+    else {
+        e.className = "wrong";
         this.removeLife();
     }
 }
 
 resetGame() {
+    const hiddenPhrase = document.querySelector('#phrase ul');
+    hiddenPhrase.innerHTML = '';
+    
+    for (let i = 0; i < keys.length; i++) {
+        keys[i].className = 'key';
+        keys[i].disabled = true;
+    }
+
+    
 
 
     }

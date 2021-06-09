@@ -63,14 +63,15 @@ checkForWin() {
 * Removes a life from the scoreboard
 * Checks if player has remaining lives and ends game if player is out
 */
-    removeLife() { 
-            const tries = document.querySelector("img[src='images/liveHeart.png']");
-            tries.setAttribute("src", "images/lostHeart.png");
-            this.missed += 1;
-        if (this.missed === 5 ) {
-            this.gameOver();
-        }
+removeLife() {
+    this.missed += 1;
+    const tries = document.querySelector('.tries img[src="images/liveHeart.png"]');
+    tries.src = 'images/lostHeart.png';
+    if(this.missed === 5) {
+    this.gameOver(false);
     }
+  };
+
 /**
 * Displays game over message
 * @param {boolean} gameWon - Whether or not the user won the game
@@ -117,11 +118,15 @@ handleInteraction(e) {
 }
 
 resetGame() {
-    const phraseLi = document.querySelector('#phrase ul li');
+    const phraseLi = document.querySelector('#phrase ul');
     phraseLi.innerHTML = '';
-    for (let i = 0; i < keys.length; i++) {
-        keys[i].className = 'key';
-        keys[i].disabled = false;
+    this.missed = 0;
+    const qwerty = document.querySelectorAll('#qwerty button');
+    for (let i = 0; i < qwerty.length; i++) {
+        qwerty[i].className = 'key';
+        qwerty[i].disabled = false;
     } 
+    const tries = document.querySelectorAll("img[src='images/liveHeart.png']");
+    tries.forEach(live => live.setAttribute("src", "images/liveHeart.png"))
   }
 }

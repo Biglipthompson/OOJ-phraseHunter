@@ -2,6 +2,8 @@
  * Project 4 - OOP Game App
  * Game.js */
 const buttonReset = document.querySelector('#btn__reset');
+const keys = document.getElementsByClassName('key');
+
 
 class Game  {
     constructor() {
@@ -115,16 +117,11 @@ handleInteraction(e) {
 }
 
 resetGame() {
-    const hiddenPhrase = document.querySelector('#phrase ul');
-    hiddenPhrase.innerHTML = '';
-    
+    const phraseLi = document.querySelector('#phrase ul li');
+    phraseLi.innerHTML = '';
     for (let i = 0; i < keys.length; i++) {
         keys[i].className = 'key';
-        keys[i].disabled = true;
-    }
-
-    
-
-
-    }
-};
+        keys[i].disabled = false;
+    } 
+  }
+}

@@ -63,14 +63,14 @@ checkForWin() {
 * Removes a life from the scoreboard
 * Checks if player has remaining lives and ends game if player is out
 */
-removeLife() {
-    this.missed += 1;
-    const tries = document.querySelector('.tries img[src="images/liveHeart.png"]');
-    tries.src = 'images/lostHeart.png';
-    if(this.missed === 5) {
-    this.gameOver(false);
-    }
-  };
+ removeLife() {
+     this.missed++
+     const tries = document.querySelector('.tries');
+     tries.firstElementChild.src = "images/lostHeart.png";
+     if(this.missed === 5) {
+     this.gameOver(false);
+     }
+   };
 
 /**
 * Displays game over message
@@ -127,6 +127,6 @@ resetGame() {
         qwerty[i].disabled = false;
     } 
     const tries = document.querySelectorAll("img[src='images/liveHeart.png']");
-    tries.forEach(live => live.setAttribute("src", "images/liveHeart.png"))
+    tries.forEach(live => live.setAttribute("src", "images/liveHeart.png"));
   }
 }

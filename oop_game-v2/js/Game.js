@@ -58,19 +58,8 @@ checkForWin() {
            return false;
     }
 };
-/**
-* Increases the value of the missed property
-* Removes a life from the scoreboard
-* Checks if player has remaining lives and ends game if player is out
-*/
- removeLife() {
-     this.missed++
-     const tries = document.querySelector('.tries');
-     tries.firstElementChild.src = "images/lostHeart.png";
-     if(this.missed === 5) {
-     this.gameOver(false);
-     }
-   };
+
+
 
 /**
 * Displays game over message
@@ -101,13 +90,9 @@ handleInteraction(e) {
     const key = e.textContent;
 
     if (this.activePhrase.checkLetter(key)) {
-
         e.className = 'chosen key'; 
-
         this.activePhrase.showMatchedLetter(key);
-
     if (this.checkForWin()){
-
         this.gameOver(true);
         }
 }
@@ -116,7 +101,19 @@ handleInteraction(e) {
         this.removeLife();
     }
 }
-
+/**
+* Increases the value of the missed property
+* Removes a life from the scoreboard
+* Checks if player has remaining lives and ends game if player is out
+*/
+removeLife() {
+    this.missed++;
+    const tries = document.querySelector(".tries");
+    tries.firstElementChild.src = "images/lostHeart.png";
+    tries.setAttribute("class", "lost");
+    if (this.missed === 5) {
+        this.gameOver(false);
+}}
 resetGame() {
     const phraseLi = document.querySelector('#phrase ul');
     phraseLi.innerHTML = '';
@@ -126,7 +123,7 @@ resetGame() {
         qwerty[i].className = 'key';
         qwerty[i].disabled = false;
     } 
-    const tries = document.querySelectorAll("img[src='images/liveHeart.png']");
-    tries.forEach(live => live.setAttribute("src", "images/liveHeart.png"));
+    const tries = document.querySelectorAll("img[src='images/lostHeart.png']");
+    tries.forEach(life => life.setAttribute("src", "images/liveHeart.png"));
   }
 }
